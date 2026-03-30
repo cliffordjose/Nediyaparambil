@@ -86,16 +86,22 @@ p.body-text{font-size:1.08rem;color:var(--cream);opacity:0.9;margin-bottom:1.1re
 .tl-body{font-size:0.93rem;color:var(--cream);opacity:0.8;line-height:1.7;}
 
 /* PORTRAIT */
-.portrait-wrap{display:flex;gap:3rem;align-items:flex-start;margin:2rem 0;}
-.portrait-box{flex-shrink:0;width:150px;height:195px;border:1px solid var(--gold-dark);position:relative;display:flex;align-items:center;justify-content:center;background:var(--bg3);}
-.portrait-box::before{content:'';position:absolute;inset:7px;border:1px solid rgba(200,169,110,0.2);}
-.portrait-initial{font-family:'Cormorant Garamond',serif;font-size:4.5rem;color:var(--gold);opacity:0.35;font-weight:300;}
-.corner-bracket{position:absolute;width:18px;height:18px;border-color:var(--gold);border-style:solid;opacity:0.75;}
+.portrait-wrap{display:flex;flex-direction:column;align-items:center;gap:3rem;margin:4rem auto;max-width:900px;}
+.portrait-box, .landscape-box{flex-shrink:0;border:1px solid var(--gold-dark);position:relative;display:flex;align-items:center;justify-content:center;background:var(--bg3);box-shadow:0 15px 45px rgba(0,0,0,0.6);margin:0 auto;}
+.portrait-box{width:160px;height:210px;}
+.landscape-box{width:100%;max-width:580px;height:auto;min-height:200px;overflow:hidden;}
+.portrait-box::before, .landscape-box::before{content:'';position:absolute;inset:8px;border:1px solid rgba(200,169,110,0.15);z-index:3;pointer-events:none;}
+.landscape-box::before{inset:15px;}
+.portrait-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);}
+.landscape-box img{width:100%;height:auto;display:block;z-index:1;position:relative;transition:transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);}
+.portrait-box:hover img, .landscape-box:hover img{transform:scale(1.04);}
+.portrait-initial{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--gold);opacity:0.2;font-weight:300;z-index:0;}
+.corner-bracket{position:absolute;width:24px;height:24px;border-color:var(--gold);border-style:solid;opacity:0.8;z-index:4;pointer-events:none;}
 .corner-bracket.tl{top:-1px;left:-1px;border-width:2px 0 0 2px;}
 .corner-bracket.tr{top:-1px;right:-1px;border-width:2px 2px 0 0;}
 .corner-bracket.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
 .corner-bracket.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
-.portrait-caption{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.5;text-align:center;margin-top:0.6rem;}
+.portrait-caption{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);opacity:0.7;text-align:center;margin-top:1.2rem;line-height:1.6;}
 
 /* CHURCH */
 .church-card{border:1px solid var(--gold-dim);background:var(--bg3);padding:2.5rem;position:relative;margin:2rem 0;}
@@ -274,16 +280,17 @@ footer{text-align:center;padding:5rem 2rem 3rem;border-top:1px solid rgba(139,10
   <h2 class="sec-title">Sir Thomas <em>Nediyaparambil</em></h2>
   <div class="ornament">✦</div>
   <div class="portrait-wrap">
-    <div style="flex-shrink:0;text-align:center;">
-      <div class="portrait-box">
-        <span class="portrait-initial">T</span>
+    <div style="flex:1;min-width:300px;text-align:center;">
+      <div class="landscape-box">
+        <img src="img.jpeg" alt="Sir Thomas & Eliyamma Nediyaparambil" onerror="this.style.display='none'">
+        <span class="portrait-initial">T & E</span>
         <span class="corner-bracket tl"></span><span class="corner-bracket tr"></span>
         <span class="corner-bracket bl"></span><span class="corner-bracket br"></span>
       </div>
-      <p class="portrait-caption">Sir Thomas Nediyaparambil</p>
-      <p class="portrait-caption" style="opacity:0.4;margin-top:2px;">Founder · Secretary · Pillar</p>
+      <p class="portrait-caption">Sir Thomas &amp; Eliyamma Nediyaparambil</p>
+      <p class="portrait-caption" style="opacity:0.4;margin-top:2px;">The Founding Couple</p>
     </div>
-    <div>
+    <div style="text-align:justify;max-width:700px;">
       <p class="body-text">On <span class="gold-em">December 15, 1930</span>, Sir Thomas Nediyaparambil purchased a prime plot of land in Naranganam — a monumental act that laid the literal and spiritual foundation of St. Mary's Malankara Catholic Church. He was not merely a benefactor; he was the guardian of the entire enterprise: the man who offered his home as refuge, who concealed school documents in manure sacks to outwit a court order, who stood before judges with composure and returned to the faithful with strategy.</p>
       <p class="body-text">As <span class="gold-em">secretary to Archbishop Mar Ivanios</span>, Sir Thomas moved in two worlds fluently — the world of the Archbishop's grand vision, and the world of the farmer, the landowner, the village elder. He was trusted by both, and served both without losing the confidence of either.</p>
     </div>
@@ -367,6 +374,11 @@ footer{text-align:center;padding:5rem 2rem 3rem;border-top:1px solid rgba(139,10
   <div class="church-card">
     <p class="body-text" style="margin:0 0 1rem">St. Mary's Malankara Syrian Catholic Church, Naranganam, is not simply a building. It is the physical embodiment of a community's refusal to be diminished. Every stone in its walls carries the weight of the locked door, the burning shed, the tears of a priest, and the faith of a man who believed the ground beneath his feet could become something holy.</p>
     <p class="body-text" style="margin:0">The church belongs to the Malankara Catholic Church — an Eastern Catholic Church in full communion with Rome, preserving the ancient West Syriac liturgical tradition brought to India by Saint Thomas the Apostle in AD 52. Its liturgy is among the oldest in Christendom. Its congregation in Naranganam was born in fire and grew in grace.</p>
+    
+    <div class="pq" style="font-size:1.05rem; padding: 1.2rem 1.5rem; margin: 2rem 0; border-left:2px solid var(--gold-bright);">
+      Continuing this legacy of deep faith and generosity, <span class="gold-em">Dr. John Thomas Nediyaparambil</span> and his wife <span class="gold-em">Amminikutty John</span> later donated land for the construction of the <em>Kurushumoodu</em> (Wayside Cross) of St. Mary's Malankara Catholic Church, Naranganam—ensuring the light of their family's devotion would continue to guide travelers and the faithful alike.
+    </div>
+
     <div class="church-facts">
       <div class="fact-item"><div class="fact-num">AD 52</div><div class="fact-label">Apostolic roots</div></div>
       <div class="fact-item"><div class="fact-num">1930</div><div class="fact-label">Parish founded</div></div>
@@ -386,12 +398,20 @@ footer{text-align:center;padding:5rem 2rem 3rem;border-top:1px solid rgba(139,10
   <h2 class="sec-title">The <em>Family Tree</em></h2>
   <div class="ornament">❧ &nbsp; ✦ &nbsp; ❧</div>
 
-  <div style="text-align:center;margin-bottom:0">
-    <div class="tree-root-node" style="display:inline-flex;">
-      <span class="t-name" style="font-size:1.1rem;letter-spacing:1px;">Sir Thomas Nediyaparambil</span>
-      <span class="t-role">Founder · Pillar of the Parish · 1930</span>
+  <div style="text-align:center;">
+    <div style="display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;">
+      <div class="tree-root-node" style="display:inline-flex;">
+        <span class="t-name" style="font-size:1.1rem;letter-spacing:1px;">Sir Thomas Nediyaparambil</span>
+        <span class="t-role">Founder · Pillar of the Parish</span>
+      </div>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);opacity:0.45;padding:0 4px;">✦</span>
+      <div class="tree-root-node" style="border-color:var(--gold-dark);">
+        <span class="t-name">Eliyamma Thomas</span>
+        <span class="t-role">Beloved wife</span>
+      </div>
     </div>
     <div class="vline" style="height:22px;background:linear-gradient(to bottom,var(--gold),var(--gold-dark));"></div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:5px;color:var(--gold);opacity:0.5;text-transform:uppercase;margin-bottom:14px;">Their Son</p>
   </div>
 
   <div style="text-align:center;">
@@ -423,7 +443,7 @@ footer{text-align:center;padding:5rem 2rem 3rem;border-top:1px solid rgba(139,10
       <div class="children-row">
         <div class="child-node ba">Sujin Saji</div>
         <div class="child-node ba">Shalu Ann Saji</div>
-        <div class="child-node ba">Johnson Saji</div>
+        <div class="child-node ba">Johncy Saji</div>
       </div>
     </div>
 
